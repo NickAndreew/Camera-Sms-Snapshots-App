@@ -1,0 +1,69 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" href="../../favicon.ico"/>
+        <link rel="stylesheet" href="./main.css">
+        <title>Camera Interface</title>
+    </head>
+    <body>
+
+        <div class="page-hat">
+            <h1 class="page-hat-text">Camera Imitation Interface</h1>
+        </div>
+        <div th:if="${message}">
+            <h2 th:text="${message}"/>
+        </div>
+
+        <div class="container1">
+            <div>
+                <form method="POST" enctype="multipart/form-data" action="/CameraImitationInterface-0.0.1-SNAPSHOT/">
+                    <table>
+                        <tr><td>File to upload : </td><td><input type="file" name="file" required/></td></tr>
+                        <tr>
+                            <td>Location : </td>
+                            <td>
+                                <select name="location" required>
+                                    <option value="Kyiv">Kyiv</option>
+                                    <option value="Kharkiv">Kharkiv</option>
+                                    <option value="Poltava">Poltava</option>
+                                    <option value="Dnipropetrovsk">Dnipropetrovsk</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Send Delay : </td>
+                            <td>
+                                <input type="text" name="sendDelay" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Upload" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Send to SnapshotServerApp : </td>
+                            <td>
+                                <button th:onclick="|startSending()|">Send Files</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div>
+                <ul>
+                    <li th:each="file : ${files}">
+                        <a th:href="${file}" th:text="${file}" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+
+    <script src="./main.js"></script>
+
+</html>
